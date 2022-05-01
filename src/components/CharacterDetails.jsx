@@ -54,8 +54,8 @@ const CharacterDetails = () => {
               data?.status === "Dead"
                 ? "bg-red-600"
                 : data?.status == "Alive"
-                ? "bg-green-600"
-                : "bg-gray-500"
+                  ? "bg-green-600"
+                  : "bg-gray-500"
             } w-40 text-center p-1 text-white -rotate-45`}
           >
             {data?.status?.toUpperCase()}
@@ -93,8 +93,10 @@ const CharacterDetails = () => {
           </p>
           <p className="text-white text-2xl h-full pb-4">
             CHAPTERS APPEARED IN{" "}
-            {episodesAppearedIn?.map((chapter) => (
-              <li className="text-xl text-gray-400">{chapter}</li>
+            {episodesAppearedIn?.map((chapter, index) => (
+              <li key={index} className="text-xl text-gray-400">
+                {chapter}
+              </li>
             ))}
           </p>
         </div>
