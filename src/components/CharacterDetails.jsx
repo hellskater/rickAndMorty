@@ -4,6 +4,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { useGetCharacterDetails } from "../hooks/useCharacterDetails";
+import {
+  useLastLocationDetails,
+  useOriginLocationDetails,
+} from "../hooks/useLocationDetails";
 import { useEpisodeContext } from "../hooks/useEpisodeContext";
 import Header from "./Header";
 
@@ -12,9 +16,17 @@ const CharacterDetails = () => {
 
   const episodeList = useEpisodeContext(); // Fetching the list of all the episode names from Context
 
-  const api = `https://rickandmortyapi.com/api/character/${id}`;
+  const profileApi = `https://rickandmortyapi.com/api/character/${id}`;
 
-  const { data } = useGetCharacterDetails(api); // Fetching the complete profile details of the character using the id parameter
+  const { data } = useGetCharacterDetails(profileApi); // Fetching the complete profile details of the character using the id parameter
+
+  const { data: lastLocationData } = useLastLocationDetails(
+    data?.location?.url
+  ); // Fetching the last location data of the character using the url received from profile data
+
+  const { data: originLocationData } = useOriginLocationDetails(
+    data?.origin?.url
+  ); // Fetching the origin location data of the character using the url received from profile data
 
   //   Extracting the episode numbers from array of episode urls
   let episodeNumberList = data?.episode?.map(
@@ -56,11 +68,31 @@ const CharacterDetails = () => {
           <p className="text-white text-2xl">GENDER: {data?.gender}</p>
           <p className="text-white text-2xl">SPECIES: {data?.species}</p>
           <p className="text-white text-2xl">
-            LAST LOCATION: {data?.location?.name}
+            LAST LOCATION
+            <div className="text-xl text-gray-400 list-none">
+              <li>Name: {lastLocationData?.name || "unknown"}</li>
+              <li>Dimension: {lastLocationData?.dimension || "unknown"}</li>
+              <li>Type: {lastLocationData?.type || "unknown"}</li>
+              <li>
+                No. of Residents:{" "}
+                {lastLocationData?.residents?.length || "unknown"}
+              </li>
+            </div>
           </p>
-          <p className="text-white text-2xl">ORIGIN: {data?.origin?.name}</p>
-          <p className="text-white text-2xl h-full ">
-            CHAPTERS APPEARED IN:{" "}
+          <p className="text-white text-2xl">
+            ORIGIN
+            <div className="text-xl text-gray-400 list-none">
+              <li>Name: {originLocationData?.name || "unknown"}</li>
+              <li>Dimension: {originLocationData?.dimension || "unknown"}</li>
+              <li>Type: {originLocationData?.type || "unknown"}</li>
+              <li>
+                No. of Residents:{" "}
+                {originLocationData?.residents?.length || "unknown"}
+              </li>
+            </div>
+          </p>
+          <p className="text-white text-2xl h-full pb-4">
+            CHAPTERS APPEARED IN{" "}
             {episodesAppearedIn?.map((chapter) => (
               <li className="text-xl text-gray-400">{chapter}</li>
             ))}
