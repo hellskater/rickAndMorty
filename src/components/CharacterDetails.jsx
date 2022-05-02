@@ -39,7 +39,10 @@ const CharacterDetails = () => {
   );
 
   return (
-    <div className=" p-4 w-full bg-gradient-to-tl from-gray-900 via-gray-800 to-gray-900 sm:h-screen overflow-x-hidden">
+    <div
+      data-testid="characterProfile"
+      className=" p-4 w-full bg-gradient-to-tl from-gray-900 via-gray-800 to-gray-900 sm:h-screen overflow-x-hidden"
+    >
       <Header />
       <div className="flex flex-col sm:flex-row mt-5 h-[calc(100%-5.5rem)]">
         {/* Profile Image section */}
@@ -54,8 +57,8 @@ const CharacterDetails = () => {
               data?.status === "Dead"
                 ? "bg-red-600"
                 : data?.status == "Alive"
-                  ? "bg-green-600"
-                  : "bg-gray-500"
+                ? "bg-green-600"
+                : "bg-gray-500"
             } w-40 text-center p-1 text-white -rotate-45`}
           >
             {data?.status?.toUpperCase()}
