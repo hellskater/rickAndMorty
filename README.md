@@ -12,6 +12,12 @@
 
 # Preview
 
+<img width="941" alt="1" src="https://user-images.githubusercontent.com/47584722/166231384-63433c5b-cf06-469b-97f5-1e85b0657659.png">
+<img width="938" alt="2" src="https://user-images.githubusercontent.com/47584722/166231405-a415ed00-de92-472d-8364-401e7f50313a.png">
+<img width="929" alt="3" src="https://user-images.githubusercontent.com/47584722/166231448-3a5a6da0-dcfd-4a0e-a6f0-d07cbabd8462.png">
+<img width="945" alt="4" src="https://user-images.githubusercontent.com/47584722/166231494-d3ee2359-3520-45d9-a2bb-348ef354c0d2.png">
+
+
 ## Tech-Stack
 
 - React
